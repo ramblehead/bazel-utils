@@ -1,14 +1,20 @@
 # Hey Emacs, this is -*- coding: utf-8; mode: bazel -*-
 
-debug = False
-override_repository_key = None
-default_repository_key = "github"
+_debug = False
 
-def select_repository(name, repositories, key = default_repository_key):
-  if(override_repository_key and key == default_repository_key):
+override_repository_key = None
+
+def _select_repository_default(name, repositories, default_key, key):
+  if(override_repository_key and key == default_key):
     key = override_repository_key
-  if(debug or key != default_repository_key):
+  if(_debug or key != default_key):
     print("Selecting '" + key + "' for '" + name + "' repository.")
   rule = repositories[key]["rule"]
   kwargs = repositories[key]["kwargs"]
   rule(name=name, **kwargs)
+
+def select_repository(name, repositories, key = "default"):
+  _select_repository_default(name, repositories, "default", key)
+
+def select_repository_local(name, repositories, key = "local"):
+  _select_repository_default(name, repositories, "local", key)
