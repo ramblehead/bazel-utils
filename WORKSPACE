@@ -1,1 +1,1 @@
-workspace(name = "rh-bazel-utils")
+workspace(name = "bazel-utils")
