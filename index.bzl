@@ -15,7 +15,5 @@ def select_repository(name, repositories, key):
 def select_repository_remote(name, repositories, key = "remote"):
   select_repository(name, repositories, key)
 
-select_repository = select_repository_remote
-
 def select_repository_local(name, repositories, key = "local"):
   select_repository(name, repositories, key)
